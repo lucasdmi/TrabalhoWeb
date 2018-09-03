@@ -1,0 +1,11 @@
+br\iff\edu\javaweb20181\trabalhoweb\model\Promocao.class
+br\iff\edu\javaweb20181\trabalhoweb\model\Contato_.class
+br\iff\edu\javaweb20181\trabalhoweb\model\Promocao_.class
+br\iff\edu\javaweb20181\trabalhoweb\model\Celular_.class
+br\iff\edu\javaweb20181\trabalhoweb\dao\PromocaoDAO.class
+br\iff\edu\javaweb20181\trabalhoweb\dao\ContatoDAO.class
+br\iff\edu\javaweb20181\trabalhoweb\dao\CelularDAO.class
+teste\Teste.class
+br\iff\edu\javaweb20181\trabalhoweb\dao\ManagerFactory.class
+br\iff\edu\javaweb20181\trabalhoweb\model\Contato.class
+br\iff\edu\javaweb20181\trabalhoweb\model\Celular.class

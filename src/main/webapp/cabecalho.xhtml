@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        
+        <h:form id="formCabecalho">
+            
+            <p:panelGrid id="painelCabecalho" style="margin-bottom: 1%;">
+                
+                <p:graphicImage id="imgLogo" library="images" 
+                                name="logo.png"
+                                width="150px"/>
+                <div id="center">
+                <p:graphicImage id="imgPublicidade" 
+                                library="images" name="publicidade.png" width="420px"/>
+                </div>
+            </p:panelGrid>
+            <p:panel>
+            <div id="div-login">
+                    <p:graphicImage id="imgUser" library="images" 
+                                    name="user.png"
+                                    width="14px" style="position: absolute;  right: 105%; bottom: 13px;"/>
+                    
+                    <p>  
+                        <p:link id="lLogar" rendered="#{loginBean.logado == false}" outcome="login.xhtml" > Login </p:link>
+                        <p:link id="lSair" rendered="#{loginBean.logado == true}" outcome="index.xhtml"> 
+                          <p:outputLabel  value="Olá, #{loginBean.usuario}"/>  
+                          <p:commandButton value="sair" action="#{loginBean.sair()}" update="formCabecalho formMenu" /> </p:link>
+                    </p>
+                    
+            
+            </div>
+            </p:panel>
+        </h:form>
+       </ui:composition>
+</html>
+

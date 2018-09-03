@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="template.xhtml">
+        <ui:define name="corpo">
+            <center>
+                <h3>Cadastro de Produtos</h3>
+                <h:form id="formCadProduto">
+                    <p:panelGrid id="pnCadProduto" columns="2">
+
+                        <p:outputLabel  for="imagem" value="URL da Imagem: "/>
+                        <p:inputText required="true" id="imagem" value="#{produtoBean.imagem}" style="width:200px"/>
+
+                        <p:outputLabel for="descricao" value="Descricao:" />
+                        <p:inputText required="true" id="descricao" value="#{produtoBean.descricao}" />
+
+                        <p:outputLabel for="preco" value="Preço: " />                   
+                        <p:inputText required="true" id="preco" value="#{produtoBean.preco}" />
+
+                        <p:outputLabel for="marca" value="Marca: "/>
+                        <p:inputText required="true" id="marca" value="#{produtoBean.marca}"/>
+
+                        <p:outputLabel for="memoria" value="Memoria: " />
+                        <p:inputText required="true" id="memoria" value="#{produtoBean.memoria}"/>
+
+                        <p:outputLabel for="sistemaoperacional" value="Sistema Operacional: " />
+                        <p:inputText required="true" id="sistemaoperacional" value="#{produtoBean.sistemaOperacional}" />
+
+                        <p:outputLabel for="camera" value="Camera " />
+                        <p:inputText required="true" id="camera" value="#{produtoBean.camera}"/>
+
+                        <p:outputLabel for="processador" value="Processador: "/>
+                        <p:inputText required="true" id="processador" value="#{produtoBean.processador}" />
+
+                        <p:commandButton value="Salvar" action="#{produtoBean.salvar()}" update="pnCadProduto"/>
+                        <p:commandButton value="Limpar" action="#{produtoBean.limpar()}" update="pnCadProduto"/>
+
+                    </p:panelGrid>
+                </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="corpo">
+                <center>
+                    <h:form id="formPrincipal" >
+                        <p:dataTable id="dtPromocao" 
+                                     var="promocao" value="#{promocoesBean.promocoes}" 
+                                     selection="#{promocoesBean.promocaoSelecionada}" selectionMode="single" 
+                                     rowKey="#{promocao.validade}"
+                                     style="width:70%; text-align: center">
+
+                            <p:column headerText="Imagem">
+                                <p:graphicImage url="#{promocao.imagem}" width="128px"/> 
+                            </p:column>
+
+                            <p:column headerText="Desconto">
+                                <h:outputText value="#{promocao.desconto}%" />
+                            </p:column>
+
+                            <p:column headerText="Preço">
+                                <h:outputText value="R$#{promocao.preco},00" />
+                            </p:column>
+
+                            <p:column headerText="Valido Até">
+                                <h:outputText value="#{promocao.validade}" />
+                            </p:column>
+
+
+                        </p:dataTable>
+                        <p:commandButton value="Excluir" action="#{promocoesBean.excluir()}" update="dtPromocao"/>
+                        <p:commandButton id="alt" value="Alterar"
+                                         action="#{promocoesBean.carregarObj()}"
+                                         update=":formAlt:pnlAlterar"
+                                         oncomplete="PF('alteracao').show();" />
+                    </h:form>
+                </center>
+
+
+                <p:dialog widgetVar="alteracao" modal="true"
+                          header="Alterar Promoção">
+                    <h:form id="formAlt">
+                        <p:panelGrid id="pnlAlterar" columns="2">
+
+                            <p:outputLabel for="desconto" value="Desconto:"/>
+                            <p:inputText required="true" requiredMessage="Desconto obrigatório" id="desconto" value="#{promocoesBean.desconto}"/>
+
+                            <p:outputLabel for="preco" value="Preço:"/>
+                            <p:inputText required="true" requiredMessage="Preço obrigatório" id="preco" value="#{promocoesBean.preco}"/>
+
+                            <p:commandButton value="Redefinir"
+                                             action="#{promocoesBean.alterar()}"
+                                             update="pnlAlterar :formPrincipal:dtPromocao"/>
+                        </p:panelGrid>    
+                    </h:form>                
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="template.xhtml">
+        <ui:define name="corpo">
+            <center>
+                <h:form id="formProduto" >
+                    <p:dataTable id="dtProduto" var="celular" 
+                                 value="#{produtoBean.celulares}" 
+                                 widgetVar="celularTabela" filteredValue="#{produtoBean.filteredCelular}"
+                                 selection="#{produtoBean.celularSelecionado}" selectionMode="single" 
+                                 rowKey="#{celular.descricao}" style="width: 1000px; margin: 0 auto;">
+
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Pesquisa:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('celularTabela').filter()" style="width:150px" placeholder="Pesquisa"/>
+                            </p:outputPanel>
+                        </f:facet>
+
+                        <p:column headerText="Imagem">
+                            <p:graphicImage url="#{celular.imagem}" width="103px" height="120px" style="margin: 0 auto "/> 
+                        </p:column>
+
+                        <p:column headerText="Descricao" filterBy="#{celular.descricao}"  filterMatchMode="contains">
+                            <h:outputText value="#{celular.descricao}" />
+                        </p:column>
+
+                        <p:column headerText="Memória" filterBy="#{celular.memoria}"  filterMatchMode="contains" >
+                            <h:outputText value="#{celular.memoria}" />
+                        </p:column>
+
+                        <p:column headerText="Preço" filterBy="#{celular.preco}"  filterMatchMode="contains">
+                            <h:outputText value="#{celular.preco}"/>
+                        </p:column>
+
+                        <p:column  headerText="Marca" filterBy="#{celular.marca}"  filterMatchMode="contains">
+                            <h:outputText value="#{celular.marca}"/>
+                        </p:column>
+
+                        <p:column headerText="Sistema Operacional" filterBy="#{celular.sistemaOperacional}"  filterMatchMode="contains">
+                            <h:outputText  value="#{celular.sistemaOperacional}"/>
+                        </p:column>
+
+                        <p:column headerText="Câmera" filterBy="#{celular.camera}" filterMatchMode="contains" >
+                            <h:outputText value="#{celular.camera}" />
+                        </p:column>
+
+                        <p:column headerText="Processador" filterBy="#{celular.processador}" filterMatchMode="contains">
+                            <h:outputText value="#{celular.processador}"  />
+                        </p:column>               
+
+                    </p:dataTable>
+                    <p:commandButton value="Excluir" action="#{produtoBean.excluir()}" update="dtProduto"/>
+                    <p:commandButton id="alt" value="Alterar"
+                                     action="#{produtoBean.carregarObj()}"
+                                     update=":formAlt:pnlAlterar"
+                                     oncomplete="PF('alteracao').show();" />
+                </h:form>
+            </center>
+            <p:dialog widgetVar="alteracao" modal="true"
+                      header="Alterar Produto">
+                <h:form id="formAlt">
+                    <p:panelGrid id="pnlAlterar" columns="2">
+
+                        <p:outputLabel for="memoria" value="Memoria:"/>
+                        <p:inputText required="true" requiredMessage="Memoria obrigatório" id="memoria" value="#{produtoBean.memoria}"/>
+
+                        <p:outputLabel for="preco" value="Preço:"/>
+                        <p:inputText required="true" requiredMessage="Preço obrigatório" id="preco" value="#{produtoBean.preco}"/>
+
+                        <p:outputLabel for="marca" value="Marca:"/>
+                        <p:inputText required="true" requiredMessage="Marca obrigatório" id="marca" value="#{produtoBean.marca}"/>
+
+                        <p:outputLabel for="sistemaOperacional" value="Sistema Operacional:"/>
+                        <p:inputText required="true" requiredMessage="Sistema Operacional obrigatório" id="sistemaOperacional" value="#{produtoBean.sistemaOperacional}"/>
+
+                        <p:outputLabel for="camera" value="Camera:"/>
+                        <p:inputText required="true" requiredMessage="Camera obrigatório" id="camera" value="#{produtoBean.camera}"/>
+
+                        <p:outputLabel for="processador" value="Processador:"/>
+                        <p:inputText required="true" requiredMessage="Processador obrigatório" id="processador" value="#{produtoBean.processador}"/>
+
+                        <p:commandButton value="Redefinir"
+                                         action="#{produtoBean.alterar()}"
+                                         update="pnlAlterar :formProduto:dtProduto"/>
+                    </p:panelGrid>    
+                </h:form>                
+            </p:dialog>
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

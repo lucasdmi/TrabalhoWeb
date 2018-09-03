@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="template.xhtml">
+        <ui:define name="corpo">
+            <h:form id="formContato" >
+                <p:panel>
+                    <p:panelGrid  columns="2" id="painelGridContato">
+                        <p:outputLabel  value="Nome: "/>
+                        <p:inputText required="true" requiredMessage="Nome obrigadorio" value="#{contato.nome}"/>
+
+                        <p:outputLabel value="Email: "/>
+                        <p:inputText  required="true" requiredMessage="Email obrigadorio" value="#{contato.email}"/>
+
+                        <p:outputLabel value="Mensagem: "/>
+                        <p:inputTextarea required="true" requiredMessage="Mensagem obrigadorio" value="#{contato.mens}" />
+                        
+                        <p:growl id="message" showDetail="true" /> 
+                        
+                        <p:commandButton value="Enviar" actionListener="#{contato.mensagem()}" update="message">
+                            <p:confirm header="Confirmação" message="Voçê tem certeza?" icon="ui-icon-alert" />
+                        </p:commandButton>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+
+                    </p:panelGrid>
+                </p:panel>            
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+
+
+</html>
+

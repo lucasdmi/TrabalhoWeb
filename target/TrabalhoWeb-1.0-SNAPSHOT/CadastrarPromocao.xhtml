@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:composition template="template.xhtml">
+        <ui:define name="corpo">
+            <center>
+                <h3>Cadastro de Promoções</h3>
+                <h:form id="formCadPromocao">
+                <p:panelGrid id="pnCadPromocao" columns="2">
+                    
+                    <p:outputLabel for="imagem" value="URL da Imagem:"/>
+                    <p:inputText required="true" id="imagem" value="#{promocoesBean.imagem}" />
+                  
+                    <p:outputLabel for="preco" value="Preço:" />
+                    <p:inputNumber required="true" id="preco" value="#{promocoesBean.preco}" />
+
+                    <p:outputLabel for="desconto" value="Desconto em %: " />                   
+                    <p:inputNumber required="true" id="desconto" value="#{promocoesBean.desconto}" />
+
+                    <p:outputLabel for="validade" value="Validade: "/>
+                    <p:inputMask required="true" id="validade" value="#{promocoesBean.validade}" mask="99/99/9999"/>
+
+                    <p:commandButton value="Salvar" action="#{promocoesBean.inserir()}" update="pnCadPromocao"/>
+                    <p:commandButton value="Limpar" action="#{promocoesBean.limpar()}" update="pnCadPromocao"/>
+
+
+
+                </p:panelGrid>
+            </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+   
+</html>
+

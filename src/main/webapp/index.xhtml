@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="template.xhtml"> 
+        <ui:define name="corpo">
+            <h:form id="form">
+                <p:carousel id="carousel"  
+                            headerText="Mais vendidos" 
+                            itemStyle="text-align:center" circular="true"   responsive="true">
+
+                    <p:link outcome="samsungs9.xhtml">
+                        <p:panelGrid columns="1" 
+                                     columnClasses="label,value" layout="grid" 
+                                     styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+
+                                <p:graphicImage library="images" name="s9.jpg" 
+                                                style=" width: 185px; height: 180px; margin: 0; overflow: hidden; padding: 15px;"/> 
+                                <h:outputText class="a1" value="Samsung"/>
+                            </f:facet>
+                            <p:link outcome="samsungs9.xhtml"> <h:outputText class="txt" value="Samsung Galaxy S9+ G9650, 128gb" /> </p:link>
+
+                            A partir de: <h:outputText class="price" value="R$ 4.311,12" />
+
+                        </p:panelGrid>
+                    </p:link>    
+
+                    <p:link outcome="iphone7rose">
+                        <p:panelGrid columns="1" 
+                                     columnClasses="label,value" layout="grid" 
+                                     styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+
+                                <p:graphicImage library="images" name="Iphone7Rose.png" 
+                                                style=" width: 180px; height: 180px; margin: 0; overflow: hidden; padding: 15px;"/> 
+                                <h:outputText class="a1" value="Iphone"/>
+                            </f:facet>
+                            <p:link outcome="iphone7rose"> <h:outputText class="txt" value="7 plus 32gb Rosa" /></p:link>
+
+                            A partir de: <h:outputText class="price" value="R$ 3.271,56 " />
+                        </p:panelGrid>
+                    </p:link>
+
+                    <p:link outcome="iphone6sgray">
+                        <p:panelGrid columns="1" 
+                                     columnClasses="label,value" layout="grid" 
+                                     styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+
+                                <p:graphicImage library="images" name="Iphone6sGRAY.png" 
+                                                style=" width: 185px; height: 180px; margin: 0; overflow: hidden; padding: 15px;"/> 
+                                <h:outputText class="a1" value="Iphone"/>
+                            </f:facet>
+                            <p:link outcome="iphone6sgray"><h:outputText class="txt" value="6s 32gb Cinza" /></p:link>
+
+                            A partir de: <h:outputText class="price" value="R$ 2.492,90" />
+                        </p:panelGrid>
+                    </p:link>
+
+                </p:carousel>
+
+                <br/><br/>
+
+                <!--  Segundo carousel -->    
+
+                <p:carousel id="carousel2" 
+                            headerText="Menores Preços" itemStyle="text-align:center" circular="true" responsive="true" >
+
+                    <p:link outcome="iphone5s">
+                        <p:panelGrid columns="1" 
+                                     columnClasses="label,value" layout="grid" 
+                                     styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+                                <p:graphicImage library="images" name="Iphone5s.png" 
+                                                style=" width: 185px; height: 180px; margin-right: 20px; overflow: hidden; padding: 15px;"/> 
+                                <h:outputText class="a1" value="Iphone"/>
+                            </f:facet>
+                            <p:link outcome="iphone5s">    
+                                <h:outputText class="txt" value="5s 16gb Cinza" />
+                            </p:link>
+                            A partir de: <h:outputText class="price" value="R$ 750,00 " />
+                        </p:panelGrid>
+                    </p:link>
+
+
+
+                    <p:link outcome="iphone5sgold">
+                        <p:panelGrid columns="1" 
+                                     columnClasses="label,value" layout="grid" 
+                                     styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+
+                                <p:graphicImage library="images" name="Iphone5sGold.png" 
+                                                style=" width: 185px; height: 180px; margin: 0; overflow: hidden; padding: 15px;"/> 
+                                <h:outputText class="a1" value="Iphone"/>
+                            </f:facet>
+
+
+                            <p:link outcome="iphone5sgold"> <h:outputText class="txt" value="Iphone 5s 16gb Gold" /></p:link>
+                            A partir de: <h:outputText class="price" value="R$ 750,00 " />
+                        </p:panelGrid>
+                    </p:link>
+
+                    <p:link outcome="samsungj7.xhtml"> 
+                        <p:panelGrid columns="1" 
+                                     columnClasses="label,value" layout="grid" 
+                                     styleClass="ui-panelgrid-blank">
+                            <f:facet name="header">
+
+                                <p:graphicImage library="images" name="j7dourado.png" 
+                                                style=" width: 185px; height: 180px; margin: 0 auto; overflow: hidden; padding: 15px;"/> 
+                                <h:outputText class="a1" value="Samsung"/>
+                            </f:facet>
+                            <p:link outcome="samsungj7.xhtml"><h:outputText class="txt" value="Samsung Galaxy J7 Dourado" /></p:link>
+                            
+                            A partir de: <h:outputText class="price" value="R$ 647,00 " />
+
+                        </p:panelGrid>
+                    </p:link>
+
+
+
+                </p:carousel>
+
+
+            </h:form>
+
+        </ui:define>       
+    </ui:composition>
+</html>
+
