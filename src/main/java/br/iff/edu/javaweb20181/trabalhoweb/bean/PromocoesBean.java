@@ -1,5 +1,6 @@
 package br.iff.edu.javaweb20181.trabalhoweb.bean;
 
+import br.iff.edu.javaweb20181.trabalhoweb.dao.PromocaoDAO;
 import java.io.IOException;
 import br.iff.edu.javaweb20181.trabalhoweb.model.Promocao;
 import java.io.Serializable;
@@ -32,7 +33,8 @@ public class PromocoesBean implements Serializable {
 
     @PostConstruct
     public void inicializar() {
-        promocoes = new ArrayList<>();
+        PromocaoDAO pDAO = new PromocaoDAO();
+        promocoes = pDAO.findAll();
         if (!loginBean.isLogado()) {
             try {
                 FacesContext.getCurrentInstance().
@@ -46,11 +48,13 @@ public class PromocoesBean implements Serializable {
 
     public void inserir() {
         Promocao p = new Promocao();
+        PromocaoDAO pDAO = new PromocaoDAO();
         p.setDesconto(desconto);
         p.setPreco(preco);
         p.setValidade(validade);
         p.setImagem(getImagem());
-        promocoes.add(p);
+        pDAO.insert(p);
+        
         limpar();
 
     }
@@ -64,34 +68,22 @@ public class PromocoesBean implements Serializable {
     }
 
     public void excluir() {
-
+    PromocaoDAO pDAO = new PromocaoDAO();
         if (promocaoSelecionada != null) {
-            promocoes.remove(promocaoSelecionada);
+          pDAO.delete(promocaoSelecionada.getId());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exclusão de Clientes", "Cliente excluído com sucesso!"));
-            System.out.println(promocaoSelecionada.getPreco());
+            
         }
 
     }
 
     public void alterar() {
-        for (Promocao p : promocoes) {
-            if (p.getValidade().equals(validade)) {
-                p.setDesconto(desconto);
-                p.setPreco(preco);
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Alteração de Clientes", "Cliente alterado com sucesso!"));
-            }
-        }
-        redefinir();
+        PromocaoDAO pDAO = new PromocaoDAO();
+        pDAO.update(promocaoSelecionada);
+        
     }
 
-    public void redefinir() {
-        for (Promocao p : promocoes) {
-            if (p.getValidade().equals(validade)) {
-                desconto = p.getDesconto();
-                preco = p.getPreco();
-            }
-        }
-    }
+   
 
     public void carregarObj() {
         if (promocaoSelecionada != null) {

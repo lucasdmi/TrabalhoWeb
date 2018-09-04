@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.iff.edu.javaweb20181.trabalhoweb.bean;
+
+import br.iff.edu.javaweb20181.trabalhoweb.dao.CelularDAO;
+import br.iff.edu.javaweb20181.trabalhoweb.model.Celular;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -18,8 +16,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import br.iff.edu.javaweb20181.trabalhoweb.model.Celular;
-import br.iff.edu.javaweb20181.trabalhoweb.dao.CelularDAO;
 
 /**
  *
@@ -50,8 +46,10 @@ public class ProdutoBean implements Serializable {
     @PostConstruct
     public void inicializar() {
         limpar();
+        
         CelularDAO cDAO = new CelularDAO();
         celulares = cDAO.findAll();
+
         if (!loginBean.isLogado()) {
             try {
                 FacesContext.getCurrentInstance().
@@ -87,18 +85,10 @@ public class ProdutoBean implements Serializable {
     }
 
     public void alterar() {
-        for (Celular c : celulares) {
-            if (c.getDescricao().equals(descricao)) {
-                c.setMarca(marca);
-                c.setPreco(preco);
-                c.setCamera(camera);
-                c.setMemoria(memoria);
-                c.setSistemaOperacional(sistemaOperacional);
-                c.setProcessador(processador);
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Alteração de Clientes", "Cliente alterado com sucesso!"));
-            }
+         CelularDAO cDAO = new CelularDAO();
+        if(cDAO.update(celularSelecionado)){
+            inicializar();
         }
-        redefinir();
     }
 
     public void redefinir() {
@@ -128,6 +118,7 @@ public class ProdutoBean implements Serializable {
     }
 
     public void salvar() {
+        CelularDAO cDAO = new CelularDAO();
         Celular c = new Celular();
         c.setDescricao(descricao);
         c.setPreco(preco);
@@ -137,8 +128,6 @@ public class ProdutoBean implements Serializable {
         c.setSistemaOperacional(sistemaOperacional);
         c.setProcessador(processador);
         c.setImagem(imagem);
-        
-        CelularDAO cDAO = new CelularDAO();
         cDAO.insert(c);
         limpar();
     }

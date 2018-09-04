@@ -5,9 +5,13 @@
  */
 package teste;
 
+import br.iff.edu.javaweb20181.trabalhoweb.dao.CelularDAO;
 import br.iff.edu.javaweb20181.trabalhoweb.dao.ContatoDAO;
 import br.iff.edu.javaweb20181.trabalhoweb.dao.ManagerFactory;
+import br.iff.edu.javaweb20181.trabalhoweb.model.Celular;
 import br.iff.edu.javaweb20181.trabalhoweb.model.Contato;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,17 +27,11 @@ public class Teste {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       // EntityManagerFactory emf = Persistence.createEntityManagerFactory("TrabalhoWEB");
-      //  EntityManager em = emf.createEntityManager();
-       // EntityManager em = ManagerFactory.getEntityManager();
-        ContatoDAO  cDAO = new ContatoDAO();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("TrabalhoWEB");
+        EntityManager em = emf.createEntityManager();
+      
 
-        Contato ce = new Contato();
-        ce.setEmail("meuemail");
-        ce.setNome("Lucas");
-        ce.setMens("ola q passa");
-        cDAO.insert(ce);
-        
+
        // em.getTransaction().begin();
        // em.persist(ce);
        // em.getTransaction().commit();

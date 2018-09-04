@@ -78,6 +78,7 @@ public class CelularDAO {
     }
      
       public List<Celular> findAll() {
+        
         EntityManager em = ManagerFactory.getEntityManager();
         List<Celular> list = new ArrayList<>();
         try {
